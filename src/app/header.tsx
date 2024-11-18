@@ -10,11 +10,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { CircleUser, Menu, Package2, Search } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-// import { SearchInput } from "./search-input";
-// import { auth, signIn, signOut } from "@/auth";
+import { SearchInput } from "./search-input";
+import { auth, signIn, signOut } from "@/auth";
 
 export async function Header() {
-  {/*const session = await auth(); */}
+  const session = await auth();
 
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -32,14 +32,14 @@ export async function Header() {
         >
           Browse
         </Link>
-        {/* session && (
+        {session && (
           <Link
             href="/favorites"
             className="text-muted-foreground hover:text-foreground"
           >
             Favorites
           </Link>
-        ) */}
+        )}
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -64,14 +64,14 @@ export async function Header() {
               Browse
             </Link>
 
-            {/* session && (
+            {session && (
               <Link
                 href="/favorites"
                 className="text-muted-foreground hover:text-foreground"
               >
                 Favorites
               </Link>
-            ) */}
+            )}
           </nav>
         </SheetContent>
       </Sheet>
@@ -86,18 +86,18 @@ export async function Header() {
         >
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            {/* <SearchInput /> */}
+            <SearchInput />
           </div>
         </form>
         <ModeToggle />
 
-        {/* <AccountMenu /> */}
+        <AccountMenu />
       </div>
     </header>
   );
 }
 
-{/* async function AccountMenu() {
+async function AccountMenu() {
   const session = await auth();
 
   if (!session) {
@@ -135,4 +135,4 @@ export async function Header() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-} */}
+}
